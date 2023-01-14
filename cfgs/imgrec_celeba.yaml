@@ -8,7 +8,7 @@ train_dataset:
       args: {root_path: $load_root$/celeba, split: train}
     resize: 178
   loader:
-    batch_size: 16
+    batch_size: 8
     num_workers: 8
 
 test_dataset:
@@ -19,7 +19,7 @@ test_dataset:
       args: {root_path: $load_root$/celeba, split: test}
     resize: 178
   loader:
-    batch_size: 16
+    batch_size: 8
     num_workers: 8
 
 model:
