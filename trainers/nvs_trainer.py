@@ -91,13 +91,14 @@ class NvsTrainer(BaseTrainer):
         )
         mses = ((pred - gt)**2).view(B, -1).mean(dim=-1)
         loss = mses.mean()
+        psnr = (-10 * torch.log10(mses)).mean()
 
         if is_train:
             self.optimizer.zero_grad()
             loss.backward()
             self.optimizer.step()
 
-        return {'loss': loss.item()}
+        return {'loss': loss.item(), 'psnr': psnr.item()}
 
     def train_step(self, data):
         return self._iter_step(data, is_train=True)
